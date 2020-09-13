@@ -126,6 +126,19 @@ class MAGNUM_VK_EXPORT CommandPoolCreateInfo {
 CORRADE_ENUMSET_OPERATORS(CommandPoolCreateInfo::Flags)
 
 /**
+@brief Command buffer level
+@m_since_latest
+
+Wraps a @type_vk_keyword{CommandBufferLevel}.
+@m_enum_values_as_keywords
+@see @ref CommandPool::allocate()
+*/
+enum class CommandBufferLevel: Int {
+    Primary = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
+    Secondary = VK_COMMAND_BUFFER_LEVEL_SECONDARY
+};
+
+/**
 @brief Command pool
 @m_since_latest
 
@@ -193,6 +206,13 @@ class MAGNUM_VK_EXPORT CommandPool {
 
         /** @brief Handle flags */
         HandleFlags handleFlags() const { return _flags; }
+
+        /**
+         * @brief Allocate a command buffer
+         *
+         * @see @fn_vk_keyword{AllocateCommandBuffers}
+         */
+        CommandBuffer allocate(CommandBufferLevel level = CommandBufferLevel::Primary);
 
         /**
          * @brief Release the underlying Vulkan command pool

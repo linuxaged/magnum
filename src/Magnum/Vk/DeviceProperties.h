@@ -112,8 +112,9 @@ CORRADE_ENUMSET_OPERATORS(QueueFlags)
 
 Wraps a @type_vk_keyword{PhysicalDevice} along with its (lazy-populated)
 properties such as @type_vk_keyword{PhysicalDeviceProperties2} and
-@type_vk_keyword{GetPhysicalDeviceQueueFamilyProperties2}.
-@see @ref enumerateDevices()
+@type_vk_keyword{GetPhysicalDeviceQueueFamilyProperties2}. See @ref Device for
+general usage information.
+@see @ref pickDevice(), @ref enumerateDevices()
 */
 class MAGNUM_VK_EXPORT DeviceProperties {
     public:
@@ -342,9 +343,9 @@ MAGNUM_VK_EXPORT Containers::Array<DeviceProperties> enumerateDevices(Instance& 
 @m_since_latest
 
 Calls @ref enumerateDevices() and selects a device based on preferences
-specified through command-line parameters or the environment. If a device is
-not found, exits. See @ref tryPickDevice() for an alternative that doesn't exit
-on failure.
+specified through the `--magnum-device` @ref Vk-Instance-command-line "command-line option".
+If a device is not found, exits. See @ref tryPickDevice() for an alternative
+that doesn't exit on failure. See @ref Device for general usage information.
 */
 MAGNUM_VK_EXPORT DeviceProperties pickDevice(Instance& instance);
 
